@@ -1,0 +1,32 @@
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "s" ]
+run = "cd /run/media/nabaraj"
+desc = "Go to mounted Drives (USB/Mobile)"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "d" ]
+run = "cd ~/Downloads"
+desc = "Go to Downloads folder"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "i" ]
+run = "cd ~/Pictures"
+desc = "Go to Pictures folder"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "p" ]
+run = "cd ~/Projects"
+desc = "Go to Projects folder"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "c" ]
+run = "cd ~/.config"
+desc = "Go to Config files"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "h" ]
+run = "cd ~"
+desc = "Go to Home"
+
+

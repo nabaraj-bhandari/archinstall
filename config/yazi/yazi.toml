@@ -1,0 +1,48 @@
+[opener]
+# Text files and code
+edit = [
+    { run = 'nvim "$@"', block = true, desc = "Edit" }
+]
+# Images
+view = [
+    { run = 'feh -F -Z "$@"', detach = true, desc = "View Image" }
+]
+# PDFs and Web links
+web = [
+    { run = 'firefox "$@"', detach = true, desc = "Open in Firefox" }
+]
+# Media (Video/Audio)
+play = [
+    { run = 'mpv "$@"', detach = true, desc = "Play Media" }
+]
+
+[preview]
+max_width = 600
+max_height = 900
+image_filter = "triangle"
+image_quality = 75
+
+[manager]
+ratio = [ 1, 4, 3 ]
+
+[open]
+rules = [
+    # Folders (Ensure they open inside Yazi, not an editor)
+    { name = "*/", use = [ "edit", "open" ] },
+    
+    # PDF Files
+    { mime = "application/pdf", use = "web" },
+    
+    # Images
+    { mime = "image/*", use = "view" },
+    
+    # Videos/Audio
+    { mime = "{video,audio}/*", use = "play" },
+    
+    # Text and Code (Rust, Go, etc.)
+    { mime = "text/*", use = "edit" },
+    { name = "*.{rs,go,py,sh,toml,yaml,json,md,txt}", use = "edit" },
+
+    # Fallback for unknown types
+    { name = "*", use = "edit" }
+]
