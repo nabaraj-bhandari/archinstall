@@ -3,7 +3,6 @@
 # partition, pacstrap, bootloader, schedule phase2
 
 [ -d /sys/firmware/efi ] || die "Not UEFI."
-ping -c 1 archlinux.org &>/dev/null || die "No internet. Connect with iwctl first."
 
 echo -e "\n=== ARCH INSTALL — phase 1 ===\n"
 
@@ -48,6 +47,8 @@ info "Chroot configuration..."
 arch-chroot /mnt /bin/bash <<CHROOT
 set -e
 pacman -Sy --noconfirm networkmanager ly
+
+hash -r
 
 ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
 hwclock --systohc
@@ -105,6 +106,9 @@ EOF
 systemctl enable NetworkManager.service
 systemctl enable ly.service
 systemctl enable arch-phase2.service
+
+mount -t efivarfs efivarfs /sys/firmware/efi/efivars 2>/dev/null || true
+bootctl install
 
 CHROOT
 

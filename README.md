@@ -8,9 +8,13 @@ Minimal Arch + Hyprland. One script. No bloat.
 # 1. Boot Arch ISO, connect internet (iwctl), partition disk:
 cfdisk /dev/nvme0n1   # p1 = 512M EFI, p2 = rest Linux
 
-# 2. Clone & run
+# 2. Install git
+pacman -Sy git --noconfirm
+
+# 3. Clone & run
 git clone https://github.com/nabaraj-bhandari/archinstall
-cd archinstall && chmod +x install.sh && ./install.sh
+cd archinstall && ./install.sh
+
 ```
 
 Reboots → ly login manager → login → Hyprland starts.  
