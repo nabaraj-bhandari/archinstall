@@ -8,17 +8,20 @@ WALL_DIR="$HOME/.wallpapers"
 mkdir -p "$WALL_DIR"
 
 if [ -n "$1" ]; then
-  CHOSEN="$1"
+    CHOSEN="$1"
 else
-  yazi --chooser-file=/tmp/yazi-wall "$WALL_DIR"
-  CHOSEN=$(cat /tmp/yazi-wall 2>/dev/null)
-  rm -f /tmp/yazi-wall
+    yazi --chooser-file=/tmp/yazi-wall "$WALL_DIR"
+    CHOSEN=$(cat /tmp/yazi-wall 2>/dev/null)
+    rm -f /tmp/yazi-wall
 fi
 
 [ -z "$CHOSEN" ] && exit 0
-[ -f "$CHOSEN" ] || { echo "Not found: $CHOSEN"; exit 1; }
+[ -f "$CHOSEN" ] || {
+    echo "Not found: $CHOSEN"
+    exit 1
+}
 
-swww img "$CHOSEN" --transition-type fade --transition-duration 1
+awww img "$CHOSEN" --transition-type fade --transition-duration 1
 wal -i "$CHOSEN" -n -q
 
 # reload waybar colors

@@ -16,9 +16,10 @@ CPU=""
 
 # ── apps ────────────────────────────────────────────────────────────────────
 EXTRA_PACKAGES=(
-  firefox
-  mpv
-  udiskie
-  zip
-  unzip
+    firefox
+    mpv
+    udiskie
+    zip
+    unzip
+    mako
 )

@@ -1,4 +1,0 @@
-background-color = {background.strip}bb
-text-color = {foreground.strip}
-selection-color = {color1.strip}
-selection-background = {color1.strip}22

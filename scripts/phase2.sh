@@ -12,44 +12,35 @@ info "Phase 2 — Hyprland + desktop setup"
 # ── pacman packages ──────────────────────────────────────────────────────────
 info "Installing packages..."
 sudo pacman -Syu --noconfirm --needed \
-  hyprland xdg-desktop-portal-hyprland \
-  waybar \
-  kitty \
-  swww \
-  python-pywal \
-  grim slurp wl-clipboard \
-  pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol \
-  bluez bluez-utils bluetui \
-  mesa vulkan-intel intel-media-driver \
-  yazi openssh \
-  neovim \
-  ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji \
-  polkit-gnome \
-  brightnessctl playerctl \
-  reflector \
-  "${EXTRA_PACKAGES[@]}"
+    hyprland xdg-desktop-portal-hyprland \
+    waybar \
+    kitty \
+    awww \
+    python-pywal \
+    grim slurp wl-clipboard \
+    pipewire pipewire-alsa pipewire-pulse wireplumber pavucontrol \
+    bluez bluez-utils bluetui \
+    mesa vulkan-intel intel-media-driver \
+    yazi openssh \
+    neovim \
+    ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji \
+    polkit-gnome \
+    brightnessctl playerctl \
+    "${EXTRA_PACKAGES[@]}"
 
 ok "Packages installed."
 
-# ── yay ─────────────────────────────────────────────────────────────────────
-info "Building yay..."
-git clone https://aur.archlinux.org/yay.git /tmp/yay
-(cd /tmp/yay && makepkg -si --noconfirm)
-rm -rf /tmp/yay
-yay -S --noconfirm --needed tofi python-pywal16 2>/dev/null || true
-ok "yay ready."
-
 # ── dirs ─────────────────────────────────────────────────────────────────────
 mkdir -p \
-  ~/.config/hypr \
-  ~/.config/kitty \
-  ~/.config/waybar \
-  ~/.config/tofi \
-  ~/.config/yazi \
-  ~/.config/nvim \
-  ~/.config/wal/templates \
-  ~/.wallpapers \
-  ~/.local/bin
+    ~/.config/hypr \
+    ~/.config/kitty \
+    ~/.config/waybar \
+    ~/.config/tofi \
+    ~/.config/yazi \
+    ~/.config/nvim \
+    ~/.config/wal/templates \
+    ~/.wallpapers \
+    ~/.local/bin
 
 # ── copy configs ─────────────────────────────────────────────────────────────
 info "Deploying configs..."
@@ -73,12 +64,16 @@ chmod +x ~/.local/bin/wallpaper ~/.local/bin/wallpaper-init
 
 # ── default wallpaper ────────────────────────────────────────────────────────
 if [ -f "$REPO_DIR/wallpapers/default.png" ]; then
-  cp "$REPO_DIR/wallpapers/default.png" ~/.wallpapers/default.png
+    cp "$REPO_DIR/wallpapers/default.png" ~/.wallpapers/default.png
 fi
 
 # ── path ─────────────────────────────────────────────────────────────────────
 grep -qxF 'export PATH="$HOME/.local/bin:$PATH"' ~/.bashrc ||
-  echo 'export PATH="$HOME/.local/bin:$PATH"' >>~/.bashrc
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >>~/.bashrc
+
+# ── image magick update ──────────────────────────────────────────────────────
+grep -qxF 'alias convert="magick"' ~/.bashrc ||
+    echo 'alias convert="magick"' >>~/.bashrc
 
 # ── services ─────────────────────────────────────────────────────────────────
 systemctl --user enable --now pipewire pipewire-pulse wireplumber

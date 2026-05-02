@@ -12,10 +12,10 @@ lsblk -o NAME,SIZE,TYPE
 echo ""
 
 if [ -z "$EFI_PART" ]; then
-  read -rp "EFI partition  (e.g. /dev/nvme0n1p1): " EFI_PART
+    read -rp "EFI partition  (e.g. /dev/nvme0n1p1): " EFI_PART
 fi
 if [ -z "$ROOT_PART" ]; then
-  read -rp "Root partition (e.g. /dev/nvme0n1p2): " ROOT_PART
+    read -rp "Root partition (e.g. /dev/nvme0n1p2): " ROOT_PART
 fi
 
 # ── credentials ─────────────────────────────────────────────────────────────
@@ -26,7 +26,7 @@ echo
 
 # ── cpu ─────────────────────────────────────────────────────────────────────
 if [ -z "$CPU" ]; then
-  read -rp "CPU [intel/amd]: " CPU
+    read -rp "CPU [intel/amd]: " CPU
 fi
 CPU=$(echo "$CPU" | tr '[:upper:]' '[:lower:]')
 [[ "$CPU" == "amd" ]] && UCODE="amd-ucode" || UCODE="intel-ucode"
@@ -47,19 +47,11 @@ mount "$ROOT_PART" /mnt
 mkdir -p /mnt/boot
 mount "$EFI_PART" /mnt/boot
 
-# ── mirrors ─────────────────────────────────────────────────────────────────
-info "Updating mirrors..."
-reflector --age 12 --protocol https --sort rate \
-  --save /etc/pacman.d/mirrorlist 2>/dev/null || warn "reflector failed, using defaults."
-
 # ── pacstrap ─────────────────────────────────────────────────────────────────
 info "Pacstrapping base..."
 pacstrap -K /mnt \
-  base base-devel linux linux-firmware \
-  "$UCODE" \
-  networkmanager \
-  git vim sudo \
-  ly
+    base base-devel linux linux-firmware \
+    "$UCODE" networkmanager git vim sudo ly
 
 genfstab -U /mnt >>/mnt/etc/fstab
 ok "fstab written."
