@@ -29,6 +29,8 @@ mount "$ROOT_PART" /mnt
 mkdir -p /mnt/boot
 mount "$EFI_PART" /mnt/boot
 
+pacman -Sy git --noconfirm
+
 info "Installing packages..."
 pacstrap -K /mnt \
     base base-devel linux linux-firmware intel-ucode \
