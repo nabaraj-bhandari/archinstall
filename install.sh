@@ -106,6 +106,9 @@ cp /mnt/etc/sway/config "$H/.config/sway/config"
 
 cat >>"$H/.config/sway/config" <<'EOF'
 
+
+info "Point 0"
+
 set $mod Mod4
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -221,10 +224,11 @@ window#waybar {
 }
 EOF
 
-pacman -Sy git --noconfirm
-
+info "Point 1"
 $GIT clone https://github.com/LazyVim/starter "$H/.config/nvim"
 rm -rf "$H/.config/nvim/.git"
+
+info "Point 2"
 
 curl -sL https://raw.githubusercontent.com/nabaraj-bhandari/archsetup/main/wallpaper.jpg -o "$H/wallpaper.jpg"
 
