@@ -225,8 +225,6 @@ window#waybar {
 EOF
 
 info "Point 1"
-# $GIT clone https://github.com/LazyVim/starter "$H/.config/nvim"
-# rm -rf "$H/.config/nvim/.git"
 
 info "Point 2"
 
