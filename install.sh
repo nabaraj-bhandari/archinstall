@@ -99,6 +99,7 @@ die() {
 # CHROOT
 
 H="/mnt/home/$USERNAME"
+GIT="/mnt/usr/bin/git"
 
 mkdir -p "$H/.config/sway"
 cp /mnt/etc/sway/config "$H/.config/sway/config"
@@ -222,7 +223,7 @@ EOF
 
 pacman -Sy git --noconfirm
 
-git clone https://github.com/LazyVim/starter "$H/.config/nvim"
+$GIT clone https://github.com/LazyVim/starter "$H/.config/nvim"
 rm -rf "$H/.config/nvim/.git"
 
 curl -sL https://raw.githubusercontent.com/nabaraj-bhandari/archsetup/main/wallpaper.jpg -o "$H/wallpaper.jpg"
