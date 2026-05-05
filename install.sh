@@ -29,7 +29,6 @@ die() {
 # mkdir -p /mnt/boot
 # mount "$EFI_PART" /mnt/boot
 #
-# pacman -Sy git --noconfirm
 #
 # info "Installing packages..."
 # pacstrap -K /mnt \
@@ -220,6 +219,8 @@ window#waybar {
   padding: 0 10px;
 }
 EOF
+
+pacman -Sy git --noconfirm
 
 git clone https://github.com/LazyVim/starter "$H/.config/nvim"
 rm -rf "$H/.config/nvim/.git"
